@@ -20,7 +20,9 @@ RUN curl -O -s -k -L -C - http://people.redhat.com/msauve/docker/liferay-portal-
 	&& unzip liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip -d /opt \
 	&& rm liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip
 
-RUN chmod o+rx /opt/liferay-portal-6.2-ce-ga4 -R
+RUN groupadd -r liferay && useradd -r -g liferay liferay
+RUN chown liferay /opt/liferay-portal-6.2-ce-ga4 -R
+USER liferay
 
 # add config for bdd
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
