@@ -20,6 +20,8 @@ RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Lifer
 	&& unzip liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip -d /opt \
 	&& rm liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip
 
+RUN chmod o+rx /opt/liferay-portal-6.2-ce-ga4 -R
+
 # add config for bdd
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
 
