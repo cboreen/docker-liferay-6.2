@@ -22,6 +22,7 @@ RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Lifer
 
 RUN groupadd -r liferay && useradd -r -g liferay liferay
 RUN chown liferay /opt/liferay-portal-6.2-ce-ga4 -R
+RUN chown liferay /var/liferay-home -R
 USER liferay
 
 # add config for bdd
