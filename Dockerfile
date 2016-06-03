@@ -41,7 +41,7 @@ ADD lep/portal-bd-MYSQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd-MYSQ
 ADD lep/portal-bd-POSTGRESQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd-POSTGRESQL.properties
 
 COPY ./contrib/fix-permissions /usr/local/bin
-RUN chmod w+x /usr/local/bin/fix-permissions
+RUN chmod 755 /usr/local/bin/fix-permissions
 
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
@@ -51,7 +51,7 @@ VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
 # ENV JAVA_HOME /opt/java
 
 
-RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6 
+RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6
 RUN /usr/local/bin/fix-permissions /opt/liferay-portal-6.2-ce-ga6
 RUN /usr/local/bin/fix-permissions /var/liferay-home
     
