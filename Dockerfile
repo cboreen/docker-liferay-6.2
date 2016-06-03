@@ -24,14 +24,6 @@ RUN curl -O -s -k -L -C - http://pilotfiber.dl.sourceforge.net/project/lportal/L
 #RUN unzip /opt/liferay-portal-tomcat-6.2-ce-ga6-20160112152609836.zip -d /opt \
 #	&& rm /opt/liferay-portal-tomcat-6.2-ce-ga6-20160112152609836.zip
 
-
-
-RUN groupadd -r liferay && useradd -r -g liferay liferay
-RUN chown liferay /opt/liferay-portal-6.2-ce-ga6 -R
-RUN mkdir /var/liferay-home
-RUN chown liferay /var/liferay-home -R
-USER liferay
-
 # add config for bdd
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/bin/setenv.sh
 
@@ -48,6 +40,11 @@ EXPOSE 8080
 
 # Set JAVA_HOME
 ENV JAVA_HOME /opt/java
+
+#RUN groupadd -r liferay && useradd -r -g liferay liferay
+RUN chown 1001 /opt/liferay-portal-6.2-ce-ga6 -R
+RUN  chown 1001 /var/liferay-home -R
+USER 1001
 
 # EXEC
 CMD ["run"]
