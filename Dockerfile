@@ -40,7 +40,8 @@ ADD lep/portal-bundle.properties /opt/liferay-portal-6.2-ce-ga6/portal-bundle.pr
 ADD lep/portal-bd-MYSQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd-MYSQL.properties
 ADD lep/portal-bd-POSTGRESQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd-POSTGRESQL.properties
 
-COPY ./contrib /usr/local/bin
+COPY ./contrib/fix-permissions /usr/local/bin
+RUN chmod w+x /usr/local/bin/fix-permissions
 
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
