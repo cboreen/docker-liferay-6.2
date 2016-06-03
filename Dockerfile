@@ -50,9 +50,9 @@ VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
 # ENV JAVA_HOME /opt/java
 
 
-RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6 && \
-    /usr/local/bin/fix-permissions /opt/liferay-portal-6.2-ce-ga6 && \
-    /usr/local/bin/fix-permissions /var/liferay-home
+RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6 
+RUN /usr/local/bin/fix-permissions /opt/liferay-portal-6.2-ce-ga6
+RUN /usr/local/bin/fix-permissions /var/liferay-home
     
 # RUN groupadd -r liferay && useradd -r -g liferay liferay
 # RUN chown 1001 /opt/liferay-portal-6.2-ce-ga6 -R
