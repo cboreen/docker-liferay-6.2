@@ -43,7 +43,7 @@ ADD lep/portal-bd-POSTGRESQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd
 COPY ./contrib/fix-permissions /usr/local/bin
 RUN chmod 755 /usr/local/bin/fix-permissions
 
-RUN touch /var/liferay-home
+RUN mkdir /var/liferay-home
 
 # Set JAVA_HOME
 # ENV JAVA_HOME /opt/java
@@ -60,9 +60,10 @@ RUN find /opt/liferay-portal-6.2-ce-ga6 -type d -exec chmod g+x {} +
 
 
 # volumes
-#VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
+# VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
 
 # EXEC
 USER liferay
 #CMD ["/bin/bash"]
-CMD ["/opt/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/bin/catalina.sh"]
+CMD ["run"]
+ENTRYPOINT ["/opt/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/bin/catalina.sh"]
