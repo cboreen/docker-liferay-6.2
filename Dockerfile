@@ -43,22 +43,26 @@ ADD lep/portal-bd-POSTGRESQL.properties /opt/liferay-portal-6.2-ce-ga6/portal-bd
 COPY ./contrib/fix-permissions /usr/local/bin
 RUN chmod 755 /usr/local/bin/fix-permissions
 
-# volumes
-VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
-
+RUN touch /var/liferay-home
 
 # Set JAVA_HOME
 # ENV JAVA_HOME /opt/java
 
 
-RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6
-RUN /usr/local/bin/fix-permissions /opt/liferay-portal-6.2-ce-ga6
-RUN /usr/local/bin/fix-permissions /var/liferay-home
+#RUN chown -R 1001:0 /opt/liferay-portal-6.2-ce-ga6
+#RUN /usr/local/bin/fix-permissions /opt/liferay-portal-6.2-ce-ga6
+#RUN /usr/local/bin/fix-permissions /var/liferay-home
     
-# RUN groupadd -r liferay && useradd -r -g liferay liferay
-# RUN chown 1001 /opt/liferay-portal-6.2-ce-ga6 -R
-# RUN  chown 1001 /var/liferay-home -R
+RUN groupadd -r liferay && useradd -r -g liferay liferay
+RUN chown liferay /opt/liferay-portal-6.2-ce-ga6 -R
+RUN chown liferay /var/liferay-home -R
+RUN find /opt/liferay-portal-6.2-ce-ga6 -type d -exec chmod g+x {} +
+
+
+# volumes
+#VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga6/"]
 
 # EXEC
-USER 1001
+USER liferay
+#CMD ["/bin/bash"]
 CMD ["/opt/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/bin/catalina.sh"]
