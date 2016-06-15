@@ -2,13 +2,13 @@
 The image is build in docker registry : https://registry.hub.docker.com/u/snasello/liferay-6.2/
 you can pull it :
 ```
-docker pull cboreen/liferay-6.2:6.2-ce-ga4
+docker pull cboreen/docker-liferay-6.2
 ```
 
 ## Start image
 you can start it directly, it will use the hsqldb (not for production!)
 ```
-docker run --rm -t -i -p 8080:8080 cboreen/liferay-6.2:6.2-ce-ga4 
+docker run --rm -t -i -p 8080:8080 cboreen/docker-liferay-6.2 
 ```
 When you have the message "INFO: Server startup in xxx ms" you can open a browser and go to http://localhost:8080 (with boot2docker you must specify the ip, you can found it with # boot2docker ip)
 
