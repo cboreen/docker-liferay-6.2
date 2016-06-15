@@ -23,6 +23,7 @@ ADD lep/portal-bd-MYSQL.properties /opt/jboss/liferay-portal-6.2-ce-ga6/portal-b
 #ADD lep/portal-bd-POSTGRESQL.properties /opt/jboss/liferay-portal-6.2-ce-ga6/portal-bd-POSTGRESQL.properties
 
 ADD deploy/* /opt/jboss/liferay-home/deploy/
+RUN chown -R jboss /opt/jboss/liferay-home
 
 # add config for bdd
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-MYSQL.properties"' >> /opt/jboss/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/bin/setenv.sh
